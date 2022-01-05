@@ -1,0 +1,16 @@
+body {
+  background-color: azure;
+}
+
+code {
+  background-color: aliceblue;
+  padding: 0.6rem;
+  margin-left: 1rem;
+}
+
+li {
+  list-style: none;
+}
+.container {
+  background-color: beige;
+}

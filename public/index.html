@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0e0e0e" />
+    <meta
+      name="description"
+      content="Node backend API with many to many association. PostgreSQL and sequelize ORM"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+
+    <title>Many to Many</title>
+  </head>
+  <body>
+    <div class="text-center">
+      <h2 class="mt-5">
+        <i class="fa fa-home" aria-hidden="true"></i> Many to Many PostgreSQL
+      </h2>
+    </div>
+    <div class="container p-2 my-5">
+      <h3 class="text-center mb-4">
+        Node backend API with many to many association - postgreSQL and
+        sequelize ORM. API is posted on AWS with EC2 instances and RDS database
+      </h3>
+      <h5>
+        The API consists of two related models. Movie model and Actor. Api can
+        be tested using the Postman app.
+      </h5>
+      <div class="text-left my-5">
+        <p>A route can be used to get a list of all teams:</p>
+        GET <code>http://18.185.73.229/api/v1/teams</code>
+      </div>
+      <div class="text-left mb-5">
+        <p>A route can be used to get a single team:</p>
+        GET <code>http://18.185.73.229/api/v1/teams/:slug</code>
+      </div>
+      <div class="text-left mb-5">
+        <p>A route can be used to get a list of all coaches:</p>
+        GET <code>http://18.185.73.229/api/v1/coaches</code>
+      </div>
+      <div class="text-left mb-5">
+        <p>A route can be used to get a single coach:</p>
+        GET <code>http://18.185.73.229/api/v1/coaches/:slug</code>
+      </div>
+      <div>
+        <h6>
+          First you need to create all the football teams you want to belong to
+          your API, and then join the coaches. The API is constructed in such a
+          way that one team cannot have two coaches, as well as that one coach
+          cannot lead two clubs.
+        </h6>
+      </div>
+      <p>
+        When creating a team, it is necessary to input the name of the club, as
+        well as the city and country in which it is located
+      </p>
+      <ul>
+        <li>teamName: ""</li>
+        <li>city: ""</li>
+        <li>country: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to post team:</p>
+        POST <code>http://18.185.73.229/api/v1/teams</code>
+      </div>
+      <p>
+        When creating a coach, it is necessary to input the slug of the club, as
+        well as first name and last name of coach
+      </p>
+      <ul>
+        <li>teamSlug: ""</li>
+        <li>firstName: ""</li>
+        <li>lastName: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to post coach:</p>
+        POST <code>http://18.185.73.229/api/v1/coaches</code>
+      </div>
+      <h6>
+        If you want to change the data related to teams or coaches, you can do
+        so as follows:
+      </h6>
+      <p>
+        When updating a team, it is necessary to input the new name of the club
+      </p>
+      <ul>
+        <li>teamName: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to post team:</p>
+        PUT <code>http://18.185.73.229/api/v1/teams/:slug</code>
+      </div>
+
+      <p>
+        When updating a team coach, it is necessary to input the team slug and
+        old team coach name.
+      </p>
+      <ul>
+        <li>teamSlug: ""</li>
+        <li>oldCoachSlug: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to post coach:</p>
+        PUT <code>http://18.185.73.229/api/v1/coaches/:slug</code>
+        <p class="mt-2">
+          If the team is currently without a coach, assign it when creating a
+          new coach. You have to keep in mind that a coach who has already been
+          assigned to a team cannot be the coach of two clubs
+        </p>
+      </div>
+      <h6>
+        If you want to delete a football team or coach, you can do so in the
+        following way:
+      </h6>
+      <div class="text-left mb-5">
+        <p>A route can be used to delete team:</p>
+        DELETE <code>http://18.185.73.229/api/v1/teams/:slug</code>
+      </div>
+      <div class="text-left mb-5">
+        <p>A route can be used to delete coach:</p>
+        DELETE <code>http://18.185.73.229/api/v1/coaches/:slug</code>
+      </div>
+    </div>
+    <footer class="text-center my-5">&copy; srđan kljajević - 2022</footer>
+  </body>
+</html>

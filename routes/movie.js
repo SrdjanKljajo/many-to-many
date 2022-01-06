@@ -9,7 +9,7 @@ const {
   updateMovie,
   getMovieActors,
   addMovieActors,
-} = require('../controllers/Movie')
+} = require('../controllers/movie')
 
 router.route('/').get(getAllMovies).post(createMovie)
 router.route('/:slug').get(getMovie).put(updateMovie).delete(deleteMovie)

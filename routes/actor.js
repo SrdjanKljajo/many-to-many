@@ -9,7 +9,7 @@ const {
   updateActor,
   getActorMovies,
   addActorMovies,
-} = require('../controllers/Actor')
+} = require('../controllers/actor')
 
 router.route('/').get(getAllActors).post(createActor)
 router.route('/:slug').get(getActor).put(updateActor).delete(deleteActor)

@@ -7,6 +7,10 @@ const CustomApiError = require('../errors')
 const getAllActors = async (req, res) => {
   const actors = await Actor.findAll({
     include: 'movies',
+    order: [
+      ['name', 'DESC'],
+      [{ model: Movie, as: 'movies' }, 'title', 'DESC'],
+    ],
   })
   res.status(StatusCodes.OK).json({
     status: 'success',

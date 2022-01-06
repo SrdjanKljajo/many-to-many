@@ -47,98 +47,114 @@
         be tested using the Postman app.
       </h5>
       <div class="text-left my-5">
-        <p>A route can be used to get a list of all teams:</p>
-        GET <code>http://18.185.73.229/api/v1/teams</code>
+        <p>A route can be used to get a list of all movies:</p>
+        GET <code>http://3.125.160.201/api/v1/movies</code>
       </div>
       <div class="text-left mb-5">
-        <p>A route can be used to get a single team:</p>
-        GET <code>http://18.185.73.229/api/v1/teams/:slug</code>
+        <p>A route can be used to get a single movie:</p>
+        GET <code>http://3.125.160.201/api/v1/movies/:slug</code>
       </div>
       <div class="text-left mb-5">
-        <p>A route can be used to get a list of all coaches:</p>
-        GET <code>http://18.185.73.229/api/v1/coaches</code>
+        <p>A route can be used to get a list of all actors:</p>
+        GET <code>http://3.125.160.201/api/v1/actors</code>
       </div>
       <div class="text-left mb-5">
-        <p>A route can be used to get a single coach:</p>
-        GET <code>http://18.185.73.229/api/v1/coaches/:slug</code>
+        <p>A route can be used to get a single actor:</p>
+        GET <code>http://3.125.160.201/api/v1/actors/:slug</code>
       </div>
       <div>
         <h6>
-          First you need to create all the football teams you want to belong to
-          your API, and then join the coaches. The API is constructed in such a
-          way that one team cannot have two coaches, as well as that one coach
-          cannot lead two clubs.
+          First you need to create actors and movies. The API is constructed in
+          such a way that only actors and movies who is already in database may
+          be related.
         </h6>
       </div>
       <p>
-        When creating a team, it is necessary to input the name of the club, as
-        well as the city and country in which it is located
+        When creating a actor, it is necessary to input the name of the actor.
       </p>
       <ul>
-        <li>teamName: ""</li>
-        <li>city: ""</li>
-        <li>country: ""</li>
+        <li>name: ""</li>
       </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post team:</p>
-        POST <code>http://18.185.73.229/api/v1/teams</code>
+        <p>A route can be used to create actor:</p>
+        POST <code>http://3.125.160.201/api/v1/actors</code>
       </div>
       <p>
-        When creating a coach, it is necessary to input the slug of the club, as
-        well as first name and last name of coach
+        When creating a movie, it is necessary to input the title of the movie,
+        as well as director name, release year, and duration of movie in number
+        of minutes
       </p>
       <ul>
-        <li>teamSlug: ""</li>
-        <li>firstName: ""</li>
-        <li>lastName: ""</li>
+        <li>title: ""</li>
+        <li>director: ""</li>
+        <li>release: ""</li>
+        <li>duration: ""</li>
       </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post coach:</p>
-        POST <code>http://18.185.73.229/api/v1/coaches</code>
+        <p>A route can be used to create movie:</p>
+        POST <code>http://3.125.160.201/api/v1/movies</code>
       </div>
       <h6>
-        If you want to change the data related to teams or coaches, you can do
+        If you want to change the data related to actors or movies, you can do
         so as follows:
       </h6>
       <p>
-        When updating a team, it is necessary to input the new name of the club
+        When updating a actor, it is necessary to input the new name of the
+        actor
       </p>
       <ul>
-        <li>teamName: ""</li>
+        <li>name: ""</li>
       </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post team:</p>
-        PUT <code>http://18.185.73.229/api/v1/teams/:slug</code>
+        <p>A route can be used to update actor:</p>
+        PUT <code>http://3.125.160.201/api/v1/actors/:slug</code>
       </div>
-
-      <p>
-        When updating a team coach, it is necessary to input the team slug and
-        old team coach name.
-      </p>
+      <p>When updating a movie, it is necessary to input the new movie data</p>
       <ul>
-        <li>teamSlug: ""</li>
-        <li>oldCoachSlug: ""</li>
+        <li>title: ""</li>
+        <li>director: ""</li>
+        <li>release: ""</li>
+        <li>duration: ""</li>
       </ul>
       <div class="text-left mb-5">
-        <p>A route can be used to post coach:</p>
-        PUT <code>http://18.185.73.229/api/v1/coaches/:slug</code>
-        <p class="mt-2">
-          If the team is currently without a coach, assign it when creating a
-          new coach. You have to keep in mind that a coach who has already been
-          assigned to a team cannot be the coach of two clubs
-        </p>
+        <p>A route can be used to update movie:</p>
+        PUT <code>http://3.125.160.201/api/v1/movies/:slug</code>
       </div>
       <h6>
-        If you want to delete a football team or coach, you can do so in the
-        following way:
+        If you want to delete a actor or movie, you can do so in the following
+        way:
       </h6>
       <div class="text-left mb-5">
-        <p>A route can be used to delete team:</p>
-        DELETE <code>http://18.185.73.229/api/v1/teams/:slug</code>
+        <p>A route can be used to delete actor:</p>
+        DELETE <code>http://3.125.160.201/api/v1/actors/:slug</code>
       </div>
       <div class="text-left mb-5">
-        <p>A route can be used to delete coach:</p>
-        DELETE <code>http://18.185.73.229/api/v1/coaches/:slug</code>
+        <p>A route can be used to delete movie:</p>
+        DELETE <code>http://3.125.160.201/api/v1/movies/:slug</code>
+      </div>
+      <h6>
+        When you want to add a actor to movie or vice versa, you can do so in
+        the following way:
+      </h6>
+      <p>
+        When added a actor to movie, it is necessary to input the title of movie
+      </p>
+      <ul>
+        <li>title: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to add actor to movie:</p>
+        PATCH <code>http://3.125.160.201/api/v1/movies/:slug/actors</code>
+      </div>
+      <p>
+        When added a movie to actor, it is necessary to input the name of actor
+      </p>
+      <ul>
+        <li>name: ""</li>
+      </ul>
+      <div class="text-left mb-5">
+        <p>A route can be used to add movie to actor:</p>
+        PATCH <code>http://3.125.160.201/api/v1/actors/:slug/movies</code>
       </div>
     </div>
     <footer class="text-center my-5">&copy; srđan kljajević - 2022</footer>

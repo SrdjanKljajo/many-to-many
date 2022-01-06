@@ -5,7 +5,13 @@ const CustomApiError = require('../errors')
 // @desc      Get movies
 // @route     GET /api/v1/movies
 const getAllMovies = async (req, res) => {
-  const movies = await Movie.findAll({ include: 'actors' })
+  const movies = await Movie.findAll({
+    include: 'actors',
+    order: [
+      ['title', 'ASC'],
+      [{ model: Actor, as: 'actors' }, 'name', 'ASC'],
+    ],
+  })
   res.status(StatusCodes.OK).json({
     status: 'success',
     movies,

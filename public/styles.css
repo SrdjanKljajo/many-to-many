@@ -1,5 +1,5 @@
 body {
-  background-color: azure;
+  background-color: rgb(241, 255, 241);
 }
 
 code {
@@ -12,5 +12,5 @@ li {
   list-style: none;
 }
 .container {
-  background-color: beige;
+  background-color: rgb(255, 241, 241);
 }

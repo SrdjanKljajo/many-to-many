@@ -5,9 +5,9 @@ const compression = require('compression')
 const path = require('path')
 const morgan = require('morgan')
 const cors = require('cors')
-const { connectToDatabase } = require('./config/db')
 
 dotenv.config({ path: './config/.env' })
+const { connectToDatabase } = require('./config/db')
 
 // Connect to postgres database
 connectToDatabase()

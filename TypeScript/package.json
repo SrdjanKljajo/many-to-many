@@ -1,0 +1,39 @@
+{
+  "name": "backendts",
+  "version": "1.0.0",
+  "description": "REST api backend with typescript",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "tsnd --respawn server.ts",
+    "start": "ts-node server.ts",
+    "down": "tsnd --respawn config/dropAll.ts"
+  },
+  "author": "Srdjan Kljajević",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "http-status-codes": "^2.2.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.12.5",
+    "sequelize-slugify": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/http-status-codes": "^1.2.0",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^16.11.19",
+    "sequelize-cli": "^6.3.0",
+    "ts-node": "^10.3.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  }
+}

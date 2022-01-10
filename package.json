@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
+    "test": "jest --detectOpenHandles",
     "down": "npx sequelize-cli db:migrate:undo:all",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all"
@@ -26,6 +27,8 @@
     "sequelize-slugify": "^1.6.0"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.3.0"
+    "jest": "^27.4.7",
+    "sequelize-cli": "^6.3.0",
+    "supertest": "^6.1.6"
   }
 }

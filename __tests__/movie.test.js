@@ -52,21 +52,29 @@ describe('TEST MOVIE ROUTES', () => {
       expect(200)
     })
 
-    test('PATCH, should respond with a 200 status code and json content type', async () => {
+    test('PATCH, should respond with a 200 status code and json content type and success message', async () => {
       await request(app).post('/api/v1/actors').send({ name: 'patchtest' })
       await request(app)
         .patch(`/api/v1/movies/${slug}/actors`)
         .send({ name: 'patchtest' })
         .expect(200)
         .expect('Content-Type', /json/)
+        .expect(res => {
+          expect(res.body.msg).toEqual(
+            `Actor patchtest add succesfuly to movie retest`
+          )
+        })
       await request(app).delete(`/api/v1/actors/patchtest`)
     })
 
-    test('PATCH, Actor dont exist - should respond with a 404 status code', async () => {
+    test('PATCH, Actor dont exist - should respond with a 404 status code and error message', async () => {
       await request(app).post('/api/v1/actors').send({ name: 'patchtest' })
       await request(app)
         .patch(`/api/v1/actors/${slug}/movies`)
         .send({ name: '' }, { name: null }, { name: 'noPatchtest' })
+        .expect(res => {
+          expect(res.body.errMsg).toEqual(`Actor ${slug} not found`)
+        })
         .expect(404)
       await request(app).delete(`/api/v1/actors/patchtest`)
     })
@@ -78,15 +86,35 @@ describe('TEST MOVIE ROUTES', () => {
   })
 
   describe('Errors test', () => {
-    test('GET, Movie not found - should respond with a 404 status code', async () => {
+    test('GET, Movie not found - should respond with a 404 status code and error message', async () => {
       const slug = undefined
-      await request(app).get(`/api/v1/movies/${slug}`).expect(404)
+      await request(app)
+        .get(`/api/v1/movies/${slug}`)
+        .expect(404)
+        .expect(res => {
+          expect(res.body.errMsg).toEqual(`Movie ${slug} not found`)
+        })
     })
 
-    test('POST, Title and director are not provided - should respond with a 400 status code', async () => {
+    test('POST, Title are not provided - should respond with a 400 status code and error message', async () => {
       await request(app)
         .post(`/api/v1/movies`)
-        .send({ title: '', director: '' }, { title: null, director: null })
+        .send({ title: null })
+        .expect(res => {
+          expect(res.body.errMsg.title).toEqual(`Movie must have a title`)
+        })
+        .expect(400)
+    })
+
+    test('POST, Title are empty - should respond with a 400 status code and error message', async () => {
+      await request(app)
+        .post(`/api/v1/movies`)
+        .send({ title: '' })
+        .expect(res => {
+          expect(res.body.errMsg.title).toEqual(
+            `Title must have 2 - 100 caracters!`
+          )
+        })
         .expect(400)
     })
   })

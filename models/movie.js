@@ -32,21 +32,11 @@ module.exports = (sequelize, DataTypes) => {
           notNull: { msg: 'Movie must have a title' },
           len: {
             args: [2, 100],
-            msg: 'Title must have 2 - 100 caracters.',
+            msg: 'Title must have 2 - 100 caracters!',
           },
         },
       },
-      director: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: { msg: 'Movie must have a director' },
-          len: {
-            args: [2, 100],
-            msg: 'Director name must have 2 - 50 caracters.',
-          },
-        },
-      },
+      director: DataTypes.STRING,
       release: DataTypes.DATE,
       duration: DataTypes.INTEGER,
       slug: {

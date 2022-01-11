@@ -1,7 +1,19 @@
 const request = require('supertest')
 const app = require('../app')
 
+const data = {
+  name: 'testName',
+  nameSlug: 'testname',
+  title: 'testTitle',
+  titleSlug: 'testtitle',
+  director: 'testDirector',
+  release: '2001',
+  duration: 123,
+}
+
 describe('TEST MOVIE ROUTES', () => {
+  const { nameSlug, name, titleSlug, title, director, release, duration } = data
+
   describe('Get all movies', () => {
     test('GET, should respond with a 200 status code', async () => {
       await request(app)
@@ -12,87 +24,75 @@ describe('TEST MOVIE ROUTES', () => {
   })
 
   describe('Create movie, Get single movie, Update movie and Delete movie', () => {
-    const slug = 'test'
-
     test('POST, should respond with a 201 status code and json content type', async () => {
       await request(app)
         .post('/api/v1/movies')
-        .send({
-          title: 'test',
-          director: 'director',
-          release: '2001',
-          duration: 123,
-        })
+        .send({ title, director, release, duration })
         .expect(201)
         .expect('Content-Type', /json/)
     })
 
     test('GET, should respond with a 200 status code and json content type', async () => {
       await request(app)
-        .get(`/api/v1/movies/${slug}`)
+        .get(`/api/v1/movies/${titleSlug}`)
         .expect(200)
         .expect('Content-Type', /json/)
     })
 
     test('PUT, should respond with a 200 status code and json content type', async () => {
       await request(app)
-        .put(`/api/v1/movies/${slug}`)
-        .send({
-          title: 'retest',
-          director: 'redirector',
-          release: '2003',
-          duration: '123',
-        })
+        .put(`/api/v1/movies/${titleSlug}`)
+        .send({ title, director, release, duration })
         .expect(200)
         .expect('Content-Type', /json/)
     })
 
     test('GET, should respond with a 200 status code', async () => {
-      await request(app).get(`/api/v1/movies/${slug}/actors`)
+      await request(app).get(`/api/v1/movies/${titleSlug}/actors`)
       expect(200)
     })
 
     test('PATCH, should respond with a 200 status code and json content type and success message', async () => {
-      await request(app).post('/api/v1/actors').send({ name: 'patchtest' })
+      await request(app).post('/api/v1/actors').send({ name })
       await request(app)
-        .patch(`/api/v1/movies/${slug}/actors`)
-        .send({ name: 'patchtest' })
+        .patch(`/api/v1/movies/${titleSlug}/actors`)
+        .send({ name })
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(res => {
           expect(res.body.msg).toEqual(
-            `Actor patchtest add succesfuly to movie retest`
+            `Actor ${name} add succesfuly to movie ${title}`
           )
         })
-      await request(app).delete(`/api/v1/actors/patchtest`)
+      await request(app).delete(`/api/v1/actors/${nameSlug}`)
     })
 
     test('PATCH, Actor dont exist - should respond with a 404 status code and error message', async () => {
-      await request(app).post('/api/v1/actors').send({ name: 'patchtest' })
+      await request(app).post('/api/v1/actors').send({ name })
       await request(app)
-        .patch(`/api/v1/actors/${slug}/movies`)
-        .send({ name: '' }, { name: null }, { name: 'noPatchtest' })
+        .patch(`/api/v1/movies/${titleSlug}/actors`)
+        .send({ name: 'noTestActor' })
         .expect(res => {
-          expect(res.body.errMsg).toEqual(`Actor ${slug} not found`)
+          expect(res.body.errMsg).toEqual(`Actor noTestActor not found`)
         })
         .expect(404)
-      await request(app).delete(`/api/v1/actors/patchtest`)
+      await request(app).delete(`/api/v1/actors/${nameSlug}`)
     })
 
     test('DELETE, should respond with a 204 status code', async () => {
-      await request(app).delete(`/api/v1/movies/${slug}`)
+      await request(app).delete(`/api/v1/movies/${titleSlug}`)
       expect(204)
     })
   })
 
   describe('Errors test', () => {
     test('GET, Movie not found - should respond with a 404 status code and error message', async () => {
-      const slug = undefined
+      const titleSlug = undefined
       await request(app)
-        .get(`/api/v1/movies/${slug}`)
+        .get(`/api/v1/movies/${titleSlug}`)
         .expect(404)
         .expect(res => {
-          expect(res.body.errMsg).toEqual(`Movie ${slug} not found`)
+          expect(res.body.errMsg).toEqual(`Movie ${titleSlug} not found`)
         })
     })
 

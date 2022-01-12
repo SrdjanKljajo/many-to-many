@@ -5,10 +5,11 @@ const data = {
   name: 'testName',
   slug: 'testname',
   title: 'testTitle',
+  titleSlug: 'testtitle',
 }
 
 describe('TEST ACTOR ROUTES', () => {
-  const { slug, title, name } = data
+  const { slug, title, titleSlug, name } = data
 
   describe('Get all actors', () => {
     test('GET, should respond with a 200 status code and json content type', async () => {
@@ -60,7 +61,7 @@ describe('TEST ACTOR ROUTES', () => {
             `Movie ${title} add succesfuly to actor ${name}`
           )
         })
-      await request(app).delete(`/api/v1/movies/${slug}`)
+      await request(app).delete(`/api/v1/movies/${titleSlug}`)
     })
 
     test('PATCH, Movie dont exist - should respond with a 404 status code and error message', async () => {
@@ -72,7 +73,7 @@ describe('TEST ACTOR ROUTES', () => {
           expect(res.body.errMsg).toEqual(`Movie noTestTitle not found`)
         })
         .expect(404)
-      await request(app).delete(`/api/v1/movies/${slug}`)
+      await request(app).delete(`/api/v1/movies/${titleSlug}`)
     })
 
     test('DELETE, should respond with a 204 status code', async () => {
